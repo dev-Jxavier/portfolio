@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # Substitua 'main' pelo nome da sua branch principal (pode ser outra como 'master', por exemplo)
+      - main
 
 jobs:
   deploy:
@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 16.x  # Substitua pela versão do Node.js que você está usando no projeto
+          node-version: '14'
 
       - name: Install dependencies
         run: npm install
@@ -27,6 +27,5 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist  # Substitua pela pasta de saída gerada pelo Vite, caso seja diferente
-
+          personal_token: ${{ secrets.ACCESS_TOKEN }}  # Usar o nome do segredo que você criou
+          publish_dir: ./dist
